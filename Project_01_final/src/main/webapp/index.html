@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>와이파이 정보 구하기</title>
+<style>
+ table{ border-collapse : collapse; }  /*이중선 제거*/
+ th,td{
+      width: 100px;
+      height: 50px;
+      text-align: left;
+      border: 1px solid #000;
+      
+      vertical-align: top;	/* 위 */
+      vertical-align: bottom;   /* 아래 */
+      vertical-align: middle;   /* 가운데 */
+    }
+    tr.colored:nth-child(even){
+
+  background-color:#FFFFFF;
+
+  color:#000000;
+
+}
+
+tr.colored:nth-child(odd){
+
+  background-color:#000000;
+
+  color:#FFFFFF;
+
+}
+  </style>
+</head>
+<h1>와이파이 정보 구하기</h1>
+<body>
+	<button id = 'home' style = 'cursor:pointer' onclick= "location.href='index.html'">홈</button> |
+	<button id = 'history' style = 'cursor:pointer' onclick= "location.href='index.html'">위치 히스토리 목록</button> |
+	<button id="all_common" style='cursor:pointer' onclick = "location.href='all_call.jsp'">모든 정보 가져오기</button>
+	<br>
+	<br>
+	<form action="/action_page.php" method="get">
+  LAT: <input type="text" name="ireum" style = 'width:100px'>&nbsp;&nbsp;LNT: <input type="text" name="juso"
+  style = 'width:100px'>&nbsp;
+  <button type="submit">내 위치 가져오기</button>
+  <button type="submit" formtarget="_blank">근처 WIFI 정보 보기</button>
+</form>
+
+<table>
+<br>
+            <thead>
+                <tr style='background-color:darkseagreen'>
+                    <th>거리(km)</th>
+                    <th>관리번호</th>
+                    <th>자치구</th>
+                    <th>와이파이명</th>
+                    <th>도로명주소</th>
+                    <th>상세주소</th>
+                    <th>철치위치</th>
+                    <th>설치유형</th>
+                    <th>설치기관</th>
+                    <th>설치구분</th>
+                    <th>망종류</th>
+                    <th>설치년도</th>
+                    <th>실내외구분</th>
+                    <th>WIFI접속환경</th>
+                    <th>X좌표</th>
+                    <th>Y좌표</th>
+                    <th>작업일자</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>성인</th>
+                    <td>2,000원</td>
+                    <td>1,000원</td>
+                    <td>500원</td>
+                </tr>
+                <tr>
+                    <th>중학생이상</th>
+                    <td>2,000원</td>
+                    <td>800원</td>
+                    <td>300원</td>
+                </tr>
+                <tr>
+                    <th>초등학생</th>
+                    <td>700원</td>
+                    <td>500원</td>
+                    <td>300원</td>
+                </tr>
+            </tbody>
+        </table>
+	
+</body>
+</html>
