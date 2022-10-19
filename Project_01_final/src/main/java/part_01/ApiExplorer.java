@@ -21,7 +21,7 @@ public class ApiExplorer {
 	public static void main() throws IOException, ParseException {
 		int cnt = 1;
 		int total = -1;
-		part_01.TestFile.drop();
+		part_01.SQLtest.main();
 		while (cnt/1000 != total) {
 			StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /* URL */
 			urlBuilder.append("/"
@@ -75,7 +75,7 @@ public class ApiExplorer {
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JSONObject jo = (JSONObject) parser.parse(jsonArray.get(i).toString());
 				var X_SWIFI_MGR_NO = "(\"" + jo.get("X_SWIFI_MGR_NO") + "\",";
-				var X_SWIFI_MRDOFC = "\"" + jo.get("X_SWIFI_MRDOFC") + "\",";
+				var X_SWIFI_MRDOFC = "\"" + jo.get("X_SWIFI_WRDOFC") + "\",";
 				var X_SWIFI_MAIN_NM = "\"" + jo.get("X_SWIFI_MAIN_NM") + "\",";
 				var X_SWIFI_ADRES1 = "\"" + jo.get("X_SWIFI_ADRES1") + "\",";
 				var X_SWIFI_ADRES2 = "\"" + jo.get("X_SWIFI_ADRES2") + "\",";
@@ -83,7 +83,7 @@ public class ApiExplorer {
 				var X_SWIFI_INSTL_TY = "\"" + jo.get("X_SWIFI_INSTL_TY") + "\",";
 				var X_SWIFI_INSTL_MBY = "\"" + jo.get("X_SWIFI_INSTL_MBY") + "\",";
 				var X_SWIFI_SVC_SE = "\"" + jo.get("X_SWIFI_SVC_SE") + "\",";
-				var X_SWIFI_CMCWR = "\"" + jo.get("X_SWIFI_MGR_CMCWR") + "\",";
+				var X_SWIFI_CMCWR = "\"" + jo.get("X_SWIFI_CMCWR") + "\",";
 				var X_SWIFI_CNSTC_YEAR = "\"" + jo.get("X_SWIFI_CNSTC_YEAR") + "\",";
 				var X_SWIFI_INOUT_DOOR = "\"" + jo.get("X_SWIFI_INOUT_DOOR") + "\",";
 				var X_SWIFI_REMARS3 = "\"" + jo.get("X_SWIFI_REMARS3") + "\",";
@@ -101,7 +101,7 @@ public class ApiExplorer {
 					list[i].add(k);
 				}
 			}
-			part_01.TestFile.insert(list);
+			part_01.SQLtest.insert(list);
 			cnt += 1000;
 		}
 	}
