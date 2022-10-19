@@ -14,6 +14,6 @@
 		int total = ApiExplorer.count();
 		out.println("<h1>"+"총 "+total+"개의 데이터가 입력되었습니다."+"</h1>");
 	%>
-	<button onclick="location.href='index.html'">홈</button>
+	<a onclick="location.href='test.jsp'">홈</a>
 </body>
 </html>

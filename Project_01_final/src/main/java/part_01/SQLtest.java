@@ -130,6 +130,7 @@ public class SQLtest {
 
 			if (conn != null)
 				conn.close();
+			
 			return jsonObject;
 
 		} catch (ClassNotFoundException e) {

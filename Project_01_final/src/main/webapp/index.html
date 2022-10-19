@@ -30,23 +30,21 @@ tr.colored:nth-child(odd) {
 </head>
 <h1>와이파이 정보 구하기</h1>
 <body>
-	<button id='home' style='cursor: pointer'
-		onclick="hi()'">홈</button>
+	<button type="button" id='home' style='cursor: pointer' onclick="hi()">홈</button>
 	|
-	<button id='history' style='cursor: pointer'
+	<button type="button" id='history' style='cursor: pointer'
 		onclick="location.href='index.html'">위치 히스토리 목록</button>
 	|
-	<button id="all_common" style='cursor: pointer'
+	<button type="button" id="all_common" style='cursor: pointer'
 		onclick="location.href='all_call.jsp'">모든 정보 가져오기</button>
 	<br>
 	<br>
 	<form action="/action_page.php" method="get">
-		LAT: <input type="text" name="ireum" style='width: 100px'>&nbsp;&nbsp;LNT:
-		<input type="text" name="juso" style='width: 100px'>&nbsp;
-	</form>
-		<button type="submit" onclick='hi()'>내 위치 가져오기</button>
+		LAT: <input type="text" id="Lat" style='width: 100px' value="">&nbsp;&nbsp;LNT:
+		<input type="text" id="Lnt" style='width: 100px' value="">&nbsp;
+		<button type="button" onclick='getLocation()'>내 위치 가져오기</button>
 		<button type="submit" formtarget="_blank">근처 WIFI 정보 보기</button>
-	
+	</form>
 	<table>
 		<br>
 
@@ -71,25 +69,24 @@ tr.colored:nth-child(odd) {
 		</tr>
 	</table>
 	<script type="text/javascript">
-	function getLocation() {
-	  if (navigator.geolocation) { // GPS를 지원하면
-	    navigator.geolocation.getCurrentPosition(function(position) {
-	      alert(position.coords.latitude + ' ' + position.coords.longitude);
-	    }, function(error) {
-	      console.error(error);
-	    }, {
-	      enableHighAccuracy: false,
-	      maximumAge: 0,
-	      timeout: Infinity
-	    });
-	  } else {
-	    alert('GPS를 지원하지 않습니다');
-	  }
-	}
-	function hi() {
-		alert('hi');
-	}
+		function getLocation() {
+			if (navigator.geolocation) { // GPS를 지원하면
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var lat = position.coords.latitude;
+					var lnt = position.coords.longitude;
+					document.getElementById("Lat").value = lat;
+					document.getElementById("Lnt").value = lnt;
+				}, function(error) {
+					console.error(error);
+				}, {
+					enableHighAccuracy : false,
+					maximumAge : 0,
+					timeout : Infinity
+				});
+			} else {
+				alert('GPS를 지원하지 않습니다');
+			}
+		}
 	</script>
-
 </body>
 </html>
