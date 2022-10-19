@@ -21,6 +21,6 @@ a {
 		out.println("<h1>"+"총 "+total+"개의 데이터가 입력되었습니다."+"</h1>");
 	%>
 	<a id='home' style='cursor: pointer; width: 30px;'
-		onclick="location.href='index.jsp'">홈으로 돌아가기</a>
+		onclick="location.href='index.jsp'">홈으로 돌아가기!</a>
 </body>
 </html>
