@@ -83,9 +83,36 @@ public class SQLtest {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void histoty_insert(String lat,String lnt) {
+		try {
+			// SQLite JDBC 체크
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// DB연결
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/wifiinfo", "root", "1004");
+			// sql문장
+			Statement stmt = conn.createStatement();
+
+			String sql = "INSERT INTO history_tbl(lat,lnt)";
+			sql += " VALUES ("+lat+","+lnt+")" ;
+			// SQL 수행
+			stmt.execute(sql);
+			System.out.println("입력성공");
+
+			if (stmt != null)
+				stmt.close();
+
+			if (conn != null)
+				conn.close();
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static JSONObject select(String LAT, String LNG) throws IOException, ParseException {
-		List<Map<String, Object>> list = new ArrayList<>();
 		JSONObject jsonObject = new JSONObject();
 		int cnt = 0;
 		try {
@@ -139,5 +166,71 @@ public class SQLtest {
 			e.printStackTrace();
 		}
 		return jsonObject;
+	}
+	
+	public static JSONObject history_select() throws IOException, ParseException {
+		JSONObject jsonObject = new JSONObject();
+		Connection con = null;                 // 데이터 베이스와 연결을 위한 객체
+        Statement stmt = null;                 // SQL 문을 데이터베이스에 보내기위한 객체
+        ResultSet rs = null;    
+		try {
+			// SQLite JDBC 체크
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// DB연결
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/wifiinfo", "root", "1004");
+
+			String sql = "select * from history_tbl order by id desc";
+			// SQL 수행
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			JSONArray json = new JSONArray();
+			while (rs.next()) {
+				JSONObject data = new JSONObject();
+				data.put("ID", rs.getString("id"));
+				data.put("X", rs.getString("lat"));
+				data.put("Y", rs.getString("lnt"));
+				data.put("시간", rs.getString("time"));
+				
+				json.add(data);
+			}
+			jsonObject.put("row", json);
+			if (stmt != null)
+				stmt.close();
+
+			if (con != null)
+				con.close();
+			return jsonObject;
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jsonObject;
+	}
+	public static void history_del(String id) throws IOException, ParseException {
+		Connection con = null;                 // 데이터 베이스와 연결을 위한 객체
+        Statement stmt = null;                 // SQL 문을 데이터베이스에 보내기위한 객체
+		try {
+			// SQLite JDBC 체크
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			// DB연결
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/wifiinfo", "root", "1004");
+
+			String sql = "delete from history_tbl where id="+id;
+			// SQL 수행
+			stmt = con.createStatement();
+			stmt.execute(sql);
+			System.out.println("제거 완료");
+			if (stmt != null)
+				stmt.close();
+
+			if (con != null)
+				con.close();
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

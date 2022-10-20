@@ -17,6 +17,7 @@
 	JSONArray jsonArray=null;
 	JSONParser parser = new JSONParser();
 	if(lat != null && lnt != null){
+		SQLtest.histoty_insert(lat, lnt);
 		json = SQLtest.select(lat, lnt);
 		jsonArray = (JSONArray) json.get("row");
 	}
@@ -63,7 +64,7 @@ a:visited {
 		onclick="location.href='index.jsp'">홈</a>
 	|
 	<a type="button" id='history' style='cursor: pointer'
-		onclick="location.href='index.jsp'">위치 히스토리 목록</a>
+		onclick="location.href='history.jsp'">위치 히스토리 목록</a>
 	|
 	<a type="button" id="all_common" style='cursor: pointer'
 		onclick="location.href='all_call.jsp'">모든 정보 가져오기</a>
